@@ -1,8 +1,21 @@
+import getAllAuctions from "@/api/getAllAuctions";
+import getEthPrice from "@/api/getEthPrice";
+import getPopularAuctions from "@/api/getPopularAuctions";
 import NavigationMenu from "@/components/Header/NavigationMenu";
 import { dm_sans } from "@/styles/fonts";
+import { AuctionsApiResponse, EthPriceApiResponse } from "@/types/api";
 import Head from "next/head";
 
-export default function Home() {
+interface HomeProps {
+  ethPrice: EthPriceApiResponse;
+  popularAuctions: AuctionsApiResponse;
+  allAuctions: AuctionsApiResponse;
+}
+export default function Home({
+  ethPrice,
+  popularAuctions,
+  allAuctions,
+}: HomeProps) {
   return (
     <>
       <Head>
@@ -22,3 +35,10 @@ export default function Home() {
     </>
   );
 }
+
+Home.getInitialProps = async () => {
+  const ethPrice = await getEthPrice();
+  const popularAuctions = await getPopularAuctions();
+  const allAuctions = await getAllAuctions();
+  return { ethPrice, popularAuctions, allAuctions };
+};
