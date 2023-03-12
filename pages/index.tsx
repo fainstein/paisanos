@@ -1,7 +1,9 @@
 import getAllAuctions from "@/api/getAllAuctions";
 import getEthPrice from "@/api/getEthPrice";
 import getPopularAuctions from "@/api/getPopularAuctions";
+import AllAuctions from "@/components/AllAuctions/AllAuctions";
 import NavigationMenu from "@/components/Header/NavigationMenu";
+import PopularAuctions from "@/components/PopularAuctions/PopularAuctions";
 import { dm_sans } from "@/styles/fonts";
 import { AuctionsApiResponse, EthPriceApiResponse } from "@/types/api";
 import Head from "next/head";
@@ -28,9 +30,8 @@ export default function Home({
         className={`min-h-screen bg-black text-sm leading-4 lg:px-40 ${dm_sans.className} font-bold`}
       >
         <NavigationMenu />
-        <h1 className={`text-3xl font-bold text-white underline`}>
-          Hello world!
-        </h1>
+        <PopularAuctions ethPrice={ethPrice} auctions={popularAuctions} />
+        <AllAuctions auctions={allAuctions} />
       </main>
     </>
   );

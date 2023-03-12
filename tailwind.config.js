@@ -11,10 +11,11 @@ module.exports = {
     extend: {},
     colors: {
       white: "#FCFCFD",
-      black: "#141416",
       "light-gray": "#777E90",
       gray: "#353945",
       "dark-gray": "#23262F",
+      black: "#141416",
+      green: "#45B36B",
     },
     extend: {
       fontFamily: {
