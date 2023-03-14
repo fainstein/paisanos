@@ -81,8 +81,8 @@ const NavigationMenu = () => {
           </button>
         </div>
         {/* Mobile Menu */}
-        <div className="z-40 flex h-[104px] flex-col px-8 pt-12 lg:hidden">
-          <div className="flex w-full items-center justify-between gap-36">
+        <div className="z-40 flex h-[104px] flex-col pt-12 lg:hidden">
+          <div className="flex w-full items-center justify-between">
             <BrandLogo />
             <div className="absolute right-8 h-8 w-8">
               <Bars2Icon
@@ -100,7 +100,7 @@ const NavigationMenu = () => {
             </div>
           </div>
           <div
-            className={`absolute left-0 top-[104px] z-20 w-screen bg-black transition-opacity duration-300 ease-in ${
+            className={`absolute left-0 top-[104px] z-20 w-screen bg-black transition-opacity duration-300 ease-in-out ${
               openMenu ? "opacity-100" : "opacity-0"
             }`}
           >

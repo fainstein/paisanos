@@ -1,6 +1,6 @@
-import getAllAuctions from "@/api/getAllAuctions";
-import getEthPrice from "@/api/getEthPrice";
-import getPopularAuctions from "@/api/getPopularAuctions";
+import getAllAuctions from "@/api/allAuctions";
+import getEthPrice from "@/api/ethPrice";
+import getPopularAuctions from "@/api/popularAuctions";
 import AllAuctions from "@/components/AllAuctions/AllAuctions";
 import NavigationMenu from "@/components/Header/NavigationMenu";
 import PopularAuctions from "@/components/PopularAuctions/PopularAuctions";
@@ -27,7 +27,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className={`min-h-screen bg-black text-sm leading-4 lg:px-40 ${dm_sans.className} font-bold`}
+        className={`min-h-screen bg-black px-8 text-sm md:px-20 xl:px-40 ${dm_sans.className} font-bold`}
       >
         <NavigationMenu />
         <PopularAuctions ethPrice={ethPrice} auctions={popularAuctions} />
@@ -37,9 +37,11 @@ export default function Home({
   );
 }
 
-Home.getInitialProps = async () => {
+export const getServerSideProps = async () => {
   const ethPrice = await getEthPrice();
   const popularAuctions = await getPopularAuctions();
   const allAuctions = await getAllAuctions();
-  return { ethPrice, popularAuctions, allAuctions };
+  return {
+    props: { ethPrice, popularAuctions, allAuctions },
+  };
 };
