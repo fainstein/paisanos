@@ -12,7 +12,7 @@ const sendRequest = async <T>(
       },
     });
     const json = await res.json();
-    return json;
+    return {data: json};
   } catch (err: any) {
     return { errorMessage: err.message };
   }

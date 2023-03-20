@@ -12,7 +12,7 @@ const AuctionMainData = ({ auction }: AuctionMainDataProps) => {
       <p className="text-5xl xl:text-6xl font-bold leading-[64px] text-white">
         the creator network®
       </p>
-      <div className="flex h-11 items-start gap-8 md:gap-0 lg:gap-8">
+      <div className="flex h-11 items-start gap-8 md:gap-8">
         <div className="flex items-center gap-2">
           <Image
             src={auction.authorAvatar}

@@ -17,6 +17,7 @@ module.exports = {
       black: "#141416",
       green: "#45B36B",
       blue: "#3772FF",
+      "cardet-blue": "#C3BFB1",
     },
     extend: {
       fontFamily: {

@@ -15,11 +15,11 @@ const PopularAuctions = ({ ethPrice, auctions }: PopularAuctionsProps) => {
 
   return (
     <div
-      className={`flex flex-col items-center gap-16 pt-8 lg:flex-row lg:items-stretch lg:justify-between xl:gap-32`}
+      className={`flex flex-col items-center gap-16 py-8 lg:flex-row lg:items-stretch lg:justify-between xl:gap-32`}
     >
       <div className="flex shrink items-start">
         <Image
-          src={auctions[currentAuctionIndex].media.image}
+          src={auctions[currentAuctionIndex].media.image2x}
           alt={"made-by-" + auctions[currentAuctionIndex].author}
           width={580}
           height={800}

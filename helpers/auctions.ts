@@ -1,4 +1,3 @@
-import { Auction } from "@/types/api";
 import parseEthPrice from "./ethPrice";
 
 /**
@@ -9,10 +8,8 @@ import parseEthPrice from "./ethPrice";
 export const getTimeRemaining = (endTime: Date) => {
   const total = new Date(endTime).getTime() - Date.now();
   // Values between 0 and 99
-  const seconds = Math.floor((total / 1000) % 60);
-  const minutes = Math.floor((total / 1000 / 60) % 60);
-  // const seconds = Math.max(Math.floor((total / 1000) % 60), 0);
-  // const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0);
+  const seconds = Math.max(Math.floor((total / 1000) % 60), 0);
+  const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0);
   const hours = Math.min(Math.max(Math.floor(total / (1000 * 60 * 60)), 0), 99);
   return {
     hours,

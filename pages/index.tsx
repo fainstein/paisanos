@@ -4,6 +4,7 @@ import getPopularAuctions from "@/api/popularAuctions";
 import AllAuctions from "@/components/AllAuctions/AllAuctions";
 import NavigationMenu from "@/components/Header/NavigationMenu";
 import PopularAuctions from "@/components/PopularAuctions/PopularAuctions";
+import store, { allAuctionsActions } from "@/store";
 import { dm_sans } from "@/styles/fonts";
 import { AuctionsApiResponse, EthPriceApiResponse } from "@/types/api";
 import Head from "next/head";
@@ -18,6 +19,7 @@ export default function Home({
   popularAuctions,
   allAuctions,
 }: HomeProps) {
+  allAuctions && store.dispatch(allAuctionsActions.setAllAuctions(allAuctions));
   return (
     <>
       <Head>
@@ -31,7 +33,7 @@ export default function Home({
       >
         <NavigationMenu />
         <PopularAuctions ethPrice={ethPrice} auctions={popularAuctions} />
-        <AllAuctions auctions={allAuctions} />
+        <AllAuctions />
       </main>
     </>
   );
@@ -41,7 +43,12 @@ export const getServerSideProps = async () => {
   const ethPrice = await getEthPrice();
   const popularAuctions = await getPopularAuctions();
   const allAuctions = await getAllAuctions();
+
   return {
-    props: { ethPrice, popularAuctions, allAuctions },
+    props: {
+      ethPrice: ethPrice.data,
+      popularAuctions: popularAuctions.data,
+      allAuctions: allAuctions.data,
+    },
   };
 };

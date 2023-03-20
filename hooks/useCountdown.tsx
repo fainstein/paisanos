@@ -1,6 +1,11 @@
 import { getTimeRemaining } from "@/helpers/auctions";
-import { TimeRemaining } from "@/types/store";
 import { useEffect, useState } from "react";
+
+export interface TimeRemaining {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 const useCountdown = (endTime: Date) => {
   const countdownInitialValue = getTimeRemaining(endTime);

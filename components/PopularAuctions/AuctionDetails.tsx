@@ -22,12 +22,12 @@ const AuctionDetails = ({ auction, ethPrice }: AuctionDetailsProps) => {
   };
 
   return (
-    <div className="flex grow flex-col items-center justify-center gap-6 rounded-3xl bg-dark-gray p-8">
+    <div className="flex grow flex-col items-center justify-center gap-6 rounded-3xl bg-dark-gray py-8 lg:px-8">
       <div className="flex flex-col items-center text-white">
         <p className={`${poppins.className} text-base font-medium`}>
           Current Bid
         </p>
-        <p className={`text-4xl lgtext-5xl font-bold leading-[56px]`}>
+        <p className={`lgtext-5xl text-4xl font-bold leading-[56px]`}>
           {auction.highestBid}
         </p>
         <p
@@ -37,13 +37,13 @@ const AuctionDetails = ({ auction, ethPrice }: AuctionDetailsProps) => {
         </p>
       </div>
       <div className="flex flex-col justify-center gap-2">
-        <span
+        <p
           className={`${poppins.className} text-center text-base font-medium text-white`}
         >
           Auction ending in
-        </span>
-        <div className="flex items-center justify-between w-[231px]">
-          <div className="flex flex-col items-center w-16">
+        </p>
+        <div className="flex w-[231px] items-center justify-between">
+          <div className="flex w-16 flex-col items-center">
             <p className="text-[32px] font-bold leading-10 text-white">
               {hours}
             </p>
@@ -53,7 +53,7 @@ const AuctionDetails = ({ auction, ethPrice }: AuctionDetailsProps) => {
               Hrs
             </p>
           </div>
-          <div className="flex flex-col items-center w-16">
+          <div className="flex w-16 flex-col items-center">
             <p className="text-[32px] font-bold leading-10 text-white">
               {minutes}
             </p>
@@ -63,7 +63,7 @@ const AuctionDetails = ({ auction, ethPrice }: AuctionDetailsProps) => {
               mins
             </p>
           </div>
-          <div className="flex flex-col items-center w-16">
+          <div className="flex w-16 flex-col items-center">
             <p className="text-[32px] font-bold leading-10 text-white">
               {seconds}
             </p>
