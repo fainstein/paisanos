@@ -1,16 +1,23 @@
 import { poppins } from "@/styles/fonts";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-interface SelectInputProps {
+interface SelectInputProps<T> {
   options: Option[];
   label?: string;
+  value: T;
+  onChange: (value: T) => void;
 }
 export interface Option {
   text: string;
   value: string;
 }
 
-const SelectInput = ({ options, label }: SelectInputProps) => {
+function SelectInput<T extends string>({
+  options,
+  label,
+  value,
+  onChange,
+}: SelectInputProps<T>) {
   return (
     <div className="flex flex-col gap-3">
       {label && (
@@ -22,8 +29,9 @@ const SelectInput = ({ options, label }: SelectInputProps) => {
       )}
       <div className="flex w-full items-center">
         <select
-          className="w-full cursor-pointer appearance-none rounded-xl border-2 border-gray bg-black p-2 pl-4 text-sm font-medium leading-6 text-white lg:w-[256px]"
-          defaultValue={options[0].value}
+          className={`${poppins.className} w-full cursor-pointer appearance-none rounded-xl border-2 border-gray bg-black p-2 pl-4 text-sm font-medium leading-6 text-white lg:w-[256px]`}
+          value={value}
+          onChange={(event) => onChange(event.target.value as T)}
         >
           {options.map((option) => {
             return (
@@ -41,6 +49,6 @@ const SelectInput = ({ options, label }: SelectInputProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default SelectInput;

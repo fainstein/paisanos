@@ -12,6 +12,8 @@ export interface filters {
   priceRange: number;
   likes: LikesType;
   colors: ColorType;
+  chronological: ChronologicalType;
+  types: TypeType;
 }
 
 export enum CategoryType {
@@ -25,7 +27,7 @@ export enum LikesType {
   LessLiked = "less-liked",
 }
 
-export enum TimeTypes {
+export enum ChronologicalType {
   Newest = "newest",
   Oldest = "oldest",
 }
@@ -36,4 +38,12 @@ export enum ColorType {
   Green = "green",
   Pink = "pink",
   Purple = "purple",
+}
+
+export enum TypeType {
+  All = "all",
+  Epic = "epic",
+  Rare = "rare",
+  Uncommon = "uncommon",
+  Legendary = "legendary",
 }

@@ -1,12 +1,19 @@
+import { allAuctionsActions, RootState } from "@/store";
 import { poppins } from "@/styles/fonts";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const PriceRange = () => {
-  const [value, setValue] = useState<number>(5);
   const [showPriceTooltip, setShowPriceTooltip] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  const value = useSelector(
+    (state: RootState) => state.filtersApplied.priceRange
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(parseFloat(e.target.value));
+    dispatch(allAuctionsActions.priceRange(parseFloat(e.target.value)));
   };
 
   const tooltipPosition = Math.round(value * 10);
@@ -35,7 +42,7 @@ const PriceRange = () => {
             >
               <div className="flex flex-col items-center">
                 <p className="text-xs leading-5 text-dark-gray">
-                  {value.toFixed(1)} ETH
+                  {parseFloat(value.toFixed(2))} ETH
                 </p>
               </div>
             </div>
@@ -49,8 +56,10 @@ const PriceRange = () => {
             type="range"
             step={0.01}
             min={0.01}
-            max={10}
+            max={12}
             value={value}
+            onMouseDown={() => setShowPriceTooltip(true)}
+            onMouseUp={() => setShowPriceTooltip(false)}
             onTouchStart={() => setShowPriceTooltip(true)}
             onTouchEnd={() => setShowPriceTooltip(false)}
             onChange={handleChange}
@@ -61,7 +70,7 @@ const PriceRange = () => {
           className={`${poppins.className} flex justify-between text-sm font-medium leading-6 text-white`}
         >
           <p>0.01 ETH</p>
-          <p>10 ETH</p>
+          <p>12 ETH</p>
         </div>
       </div>
     </div>

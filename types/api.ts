@@ -7,7 +7,7 @@ export interface Auction {
   type: string;
   stock: number;
   likes: number;
-  createdAt: Date;
+  createdAt: string;
   endsAt: Date;
   media: {
     id: number;

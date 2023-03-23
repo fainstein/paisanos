@@ -5,7 +5,7 @@ import CandlestickChart from "../Icons/CandlestickChart";
 
 const AuctionItem = ({ auction }: { auction: Auction }) => {
   return (
-    <div className="xl:w-[calc((100%-32px)/3)] flex flex-col items-center rounded-[20px] bg-dark-gray p-3 md:w-[calc((100%-32px)/2)]">
+    <div className="flex flex-col items-center rounded-[20px] bg-dark-gray p-3 md:w-[calc((100%-32px)/2)] xl:w-[calc((100%-32px)/3)]">
       <Image
         src={auction.media.image}
         alt={"made-by-" + auction.author}
@@ -55,7 +55,7 @@ const AuctionItem = ({ auction }: { auction: Auction }) => {
             <CandlestickChart />
             <p className="font-normal">Highest bid</p>
             <p className="font-semibold uppercase text-white">
-              {auction.highestBid}
+              {parseFloat(auction.highestBid).toFixed(4)} ETH
             </p>
           </div>
           <p

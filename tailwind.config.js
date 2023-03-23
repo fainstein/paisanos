@@ -10,14 +10,16 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      white: "#FCFCFD",
-      "light-gray": "#777E90",
-      gray: "#353945",
-      "dark-gray": "#23262F",
-      black: "#141416",
-      green: "#45B36B",
-      blue: "#3772FF",
-      "cardet-blue": "#C3BFB1",
+      white: "var(--color-white)",
+      "light-gray": "var(--color-light-gray)",
+      gray: "var(--color-gray)",
+      "dark-gray": "var(--color-dark-gray)",
+      black: "var(--color-black)",
+      green: "var(--color-green)",
+      blue: "var(--color-blue)",
+      "cardet-blue": "var(--color-cardet-blue)",
+      pink: "var(--color-pink)",
+      purple: "var(--color-purple)",
     },
     extend: {
       fontFamily: {
