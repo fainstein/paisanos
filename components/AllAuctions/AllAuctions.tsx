@@ -9,7 +9,7 @@ const AllAuctions = () => {
   return (
     <div className="flex flex-col gap-8 py-16 lg:flex-row">
       <Filters />
-      <div className="flex w-full md:items-center flex-col flex-wrap gap-8 md:flex-row lg:mt-36 lg:gap-4">
+      <div className="flex w-full md:items-start flex-col flex-wrap gap-8 md:flex-row lg:mt-36 lg:gap-4">
         {auctions.map((auction, i) => {
           // Add Redux Pagination
           return <AuctionItem auction={auction} key={i} />;

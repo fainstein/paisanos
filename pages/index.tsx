@@ -2,6 +2,7 @@ import getAllAuctions from "@/api/allAuctions";
 import getEthPrice from "@/api/ethPrice";
 import getPopularAuctions from "@/api/popularAuctions";
 import AllAuctions from "@/components/AllAuctions/AllAuctions";
+import Footer from "@/components/Footer";
 import NavigationMenu from "@/components/Header/NavigationMenu";
 import PopularAuctions from "@/components/PopularAuctions/PopularAuctions";
 import store, { allAuctionsActions } from "@/store";
@@ -35,6 +36,7 @@ export default function Home({
         <PopularAuctions ethPrice={ethPrice} auctions={popularAuctions} />
         <AllAuctions />
       </main>
+      <Footer />
     </>
   );
 }
