@@ -41,7 +41,7 @@ function SelectInput<T extends string>({
             );
           })}
         </select>
-        <div className="absolute right-10 md:right-24 lg:relative lg:right-10">
+        <div className="pointer-events-none absolute right-10 md:right-24 lg:relative lg:right-10">
           <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2 border-gray p-1">
             <ChevronDownIcon height={9} className="text-light-gray" />
           </div>

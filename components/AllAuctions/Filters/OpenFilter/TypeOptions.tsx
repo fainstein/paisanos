@@ -13,7 +13,15 @@ const TypeOptions = () => {
 
   const typeOptions = Object.entries(TypeType).map(([_key, value]) => ({
     type: value,
-    icon: <TypeIcon type={value} className={`h-6 w-6 text-white ${value === typeSelected ? "text-gray" : ""}`} fill={value === typeSelected ? "white" : "dark-gray"}/>,
+    icon: (
+      <TypeIcon
+        type={value}
+        className={`h-6 w-6  ${
+          value === typeSelected ? "text-gray" : "text-white"
+        }`}
+        fill={value === typeSelected ? "white" : "dark-gray"}
+      />
+    ),
   }));
 
   return (
