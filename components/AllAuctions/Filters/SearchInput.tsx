@@ -1,3 +1,4 @@
+import useResponsive from "@/hooks/useResponsive";
 import { allAuctionsActions } from "@/store";
 import { poppins } from "@/styles/fonts";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -6,27 +7,21 @@ import { useDispatch } from "react-redux";
 
 const SearchInput = () => {
   const searchInputRef = useRef<null | HTMLInputElement>(null);
-  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const { isDesktop } = useResponsive();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1024);
-    if (searchInputRef.current) {
-      searchInputRef.current.placeholder = isDesktop
-        ? "Type to find something nice..."
-        : "Type your keywords";
-    }
-  }, [isDesktop]);
+  if (searchInputRef.current) {
+    searchInputRef.current.placeholder = isDesktop
+      ? "Type to find something nice..."
+      : "Type your keywords";
+  }
+
+  const handleKeyDown = () => {
+    searchInputRef.current && searchInputRef.current.focus();
+  };
 
   useEffect(() => {
-    const handleKeyDown = () => {
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
-      }
-    };
-
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -45,6 +40,7 @@ const SearchInput = () => {
           type="text"
           onChange={inputChangeHanlder}
         />
+        0
         <div
           className="absolute right-9 flex h-10 w-10 items-center justify-center rounded-full md:right-[5.75rem] lg:right-20 lg:bg-blue xl:right-[10rem]"
           onClick={() => searchInputRef.current?.focus()}
