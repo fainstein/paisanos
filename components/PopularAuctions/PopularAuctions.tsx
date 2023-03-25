@@ -5,6 +5,8 @@ import AuctionActions from "./AuctionActions";
 import AuctionDetails from "./AuctionDetails";
 import AuctionMainData from "./AuctionMainData";
 
+import { motion } from "framer-motion";
+
 interface PopularAuctionsProps {
   ethPrice: EthPriceApiResponse;
   auctions: AuctionsApiResponse;
@@ -16,8 +18,14 @@ const PopularAuctions = ({ ethPrice, auctions }: PopularAuctionsProps) => {
   return (
     <div
       className={`flex flex-col items-center gap-16 py-8 lg:flex-row lg:items-stretch lg:justify-between xl:gap-32`}
+      key={currentAuctionIndex}
     >
-      <div className="flex shrink items-start">
+      <motion.div
+        className="flex shrink items-start"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "tween", duration: 0.8 }}
+      >
         <Image
           src={auctions[currentAuctionIndex].media.image2x}
           alt={"made-by-" + auctions[currentAuctionIndex].author}
@@ -26,8 +34,16 @@ const PopularAuctions = ({ ethPrice, auctions }: PopularAuctionsProps) => {
           priority
           className="rounded-2xl"
         />
-      </div>
-      <div className="flex flex-col gap-10 lg:max-w-[33.33]">
+      </motion.div>
+      <motion.div
+        className="flex flex-col gap-10 lg:max-w-[33.33]"
+        animate={{
+          opacity: 1,
+          x: [100, -50, 20, -5, 0],
+        }}
+        initial={{ opacity: 0 }}
+        transition={{ type: "tween", duration: 0.8 }}
+      >
         <AuctionMainData auction={auctions[currentAuctionIndex]} />
         <AuctionDetails
           auction={auctions[currentAuctionIndex]}
@@ -38,7 +54,7 @@ const PopularAuctions = ({ ethPrice, auctions }: PopularAuctionsProps) => {
           navigateAuctions={setCurrentAuctionIndex}
           totalAuctions={auctions.length}
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -64,7 +64,11 @@ const PriceRange = () => {
             onTouchEnd={() => setShowPriceTooltip(false)}
             onChange={handleChange}
             className="left-0 z-10 h-0 w-full cursor-pointer"
+            id="price-range"
           />
+          <label className="hidden" htmlFor="price-range">
+            Price Range
+          </label>
         </div>
         <div
           className={`${poppins.className} flex justify-between text-sm font-medium leading-6 text-white`}

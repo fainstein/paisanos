@@ -17,7 +17,8 @@ const SearchInput = () => {
   }
 
   const handleKeyDown = () => {
-    searchInputRef.current && searchInputRef.current.focus();
+    searchInputRef.current &&
+      searchInputRef.current.focus({ preventScroll: true });
   };
 
   useEffect(() => {

@@ -1,11 +1,23 @@
+import { useRef } from "react";
 import { poppins } from "@/styles/fonts";
 import { Auction } from "@/types/api";
 import Image from "next/image";
 import CandlestickChart from "../Icons/CandlestickChart";
+import { motion, useInView } from "framer-motion";
 
 const AuctionItem = ({ auction }: { auction: Auction }) => {
+  const itemRef = useRef(null);
+  const isInView = useInView(itemRef, { once: true });
+
   return (
-    <div className="flex flex-col items-center rounded-[20px] bg-dark-gray p-3 md:w-[calc((100%-32px)/2)] xl:w-[calc((100%-32px)/3)]">
+    <motion.div
+      ref={itemRef}
+      className="flex flex-col items-center rounded-[20px] bg-dark-gray p-3 md:w-[calc((100%-32px)/2)] xl:w-[calc((100%-32px)/3)]"
+      animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+      initial={{ opacity: 0}}
+      whileHover={{ scale: 1.03 }}
+      transition={{ duration: 0.6 }}
+    >
       <Image
         src={auction.media.image}
         alt={"made-by-" + auction.author}
@@ -65,7 +77,7 @@ const AuctionItem = ({ auction }: { auction: Auction }) => {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

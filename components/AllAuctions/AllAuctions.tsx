@@ -33,7 +33,7 @@ const AllAuctions = () => {
       {auctionsDisplayed < auctions.length && (
         <button
           onClick={handleLoadMore}
-          className="mx-auto flex items-center gap-3 rounded-full w-full relative bottom-7 lg:w-auto justify-center border-2 border-light-gray py-3 px-4"
+          className="relative bottom-7 mx-auto flex w-full items-center justify-center gap-3 rounded-full border-2 border-light-gray py-3 px-4 lg:w-auto"
         >
           <ArrowPathIcon className="h-4 w-4 text-white" />
           <p className="text-sm font-bold leading-5 text-white">Load More</p>
