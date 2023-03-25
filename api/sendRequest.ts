@@ -12,7 +12,12 @@ const sendRequest = async <T>(
       },
     });
     const json = await res.json();
-    return {data: json};
+
+    if (json.statusCode >= 400) {
+      throw new Error(json.message);
+    }
+
+    return { data: json };
   } catch (err: any) {
     return { errorMessage: err.message };
   }

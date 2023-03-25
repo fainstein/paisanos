@@ -5,22 +5,46 @@ import AllAuctions from "@/components/AllAuctions/AllAuctions";
 import Footer from "@/components/Footer";
 import NavigationMenu from "@/components/Header/NavigationMenu";
 import PopularAuctions from "@/components/PopularAuctions/PopularAuctions";
-import store, { allAuctionsActions } from "@/store";
+import { allAuctionsActions } from "@/store";
 import { dm_sans } from "@/styles/fonts";
-import { AuctionsApiResponse, EthPriceApiResponse } from "@/types/api";
+import {
+  ApiResponse,
+  AuctionsApiResponse,
+  EthPriceApiResponse,
+} from "@/types/api";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
 
 interface HomeProps {
-  ethPrice: EthPriceApiResponse;
-  popularAuctions: AuctionsApiResponse;
-  allAuctions: AuctionsApiResponse;
+  ethPrice: ApiResponse<EthPriceApiResponse>;
+  popularAuctions: ApiResponse<AuctionsApiResponse>;
+  allAuctions: ApiResponse<AuctionsApiResponse>;
 }
 export default function Home({
   ethPrice,
   popularAuctions,
   allAuctions,
 }: HomeProps) {
-  allAuctions && store.dispatch(allAuctionsActions.setAllAuctions(allAuctions));
+  const dispatch = useDispatch();
+  const errorMessage =
+    ethPrice.errorMessage ||
+    popularAuctions.errorMessage ||
+    allAuctions.errorMessage;
+
+  if (
+    errorMessage ||
+    !ethPrice.data ||
+    !popularAuctions.data ||
+    !allAuctions.data
+  ) {
+    return (
+      <div>
+        <p>Failed to load data</p>
+        <p>{errorMessage}</p>
+      </div>
+    );
+  }
+    dispatch(allAuctionsActions.setAllAuctions(allAuctions.data));
   return (
     <>
       <Head>
@@ -33,7 +57,10 @@ export default function Home({
         className={`min-h-screen bg-black px-8 text-sm md:px-20 xl:px-40 ${dm_sans.className} font-bold`}
       >
         <NavigationMenu />
-        <PopularAuctions ethPrice={ethPrice} auctions={popularAuctions} />
+        <PopularAuctions
+          ethPrice={ethPrice.data}
+          auctions={popularAuctions.data}
+        />
         <AllAuctions />
       </main>
       <Footer />
@@ -47,10 +74,6 @@ export const getServerSideProps = async () => {
   const allAuctions = await getAllAuctions();
 
   return {
-    props: {
-      ethPrice: ethPrice.data,
-      popularAuctions: popularAuctions.data,
-      allAuctions: allAuctions.data,
-    },
+    props: { ethPrice, popularAuctions, allAuctions },
   };
 };
